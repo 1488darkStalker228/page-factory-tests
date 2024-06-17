@@ -1,9 +1,8 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    branches: frontend/master
+
 jobs:
   playwright:
     name: "Playwright Tests"
@@ -20,4 +19,4 @@ jobs:
       - name: Run your tests
         run: npx playwright test
         env:
-          HOME: /root
+          HOME: /roots
