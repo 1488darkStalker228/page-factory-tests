@@ -1,0 +1,8 @@
+# Ignore artifacts:
+.github
+allure-results
+.prettierrc
+debug.ts
+package-lock.json
+package.json
+playwright.config.ts
