@@ -12,21 +12,28 @@ export default abstract class BaseElement {
   readonly page: Page
   readonly selector: string
   private readonly name: string | undefined
-
+  readonly searchIn: Locator | undefined
+  readonly locator: Locator
   /*
     В данный конструктор действительно закидывается объект с определённым нами типом;
     Таким образом, мы получаем доступ к нужным нам ключам объекта без точки "." и сразу видим, что в этом объекте лежит;
   */
-  constructor({ page, selector, name }: BaseElementProps) {
+  constructor({ page, selector, name, searchIn }: BaseElementProps) {
     this.page = page
     this.selector = selector
     this.name = name
+    this.searchIn = searchIn
+    this.locator = this.getLocator()
   }
 
   public getLocator(selectorProps: SelectorProps = {}): Locator {
     //Кладём в константу locator значение ключа locator (если он есть), а все остальные свойства кладём в создаваемый объект context;
     const { selector, ...context } = selectorProps
-    return this.page.locator(selectorStringHandler(selector || this.selector, context))
+    if (this.searchIn) {
+      return this.searchIn.locator(selectorStringHandler(selector || this.selector, context))
+    } else {
+      return this.page.locator(selectorStringHandler(selector || this.selector, context))
+    }
   }
 
   //Для отчёта;
@@ -59,12 +66,21 @@ export default abstract class BaseElement {
     })
   }
 
-  public async checkText(text: string, selectorProps: SelectorProps = {}) {
-    await test.step(`${this.typeOfUpper} "${this.componentName}" should have text "${text}"`, async () => {
+  public async checkContainText(text: string, selectorProps: SelectorProps = {}) {
+    await test.step(`${this.typeOfUpper} "${this.componentName}" should contain text "${text}"`, async () => {
       const locator: Locator = this.getLocator(selectorProps)
       await expect(locator, {
         message: this.getErrorMessage(`does not have text "${text}"`)
       }).toContainText(text)
+    })
+  }
+
+  public async checkHaveText(text: string, selectorProps: SelectorProps = {}) {
+    await test.step(`${this.typeOfUpper} "${this.componentName}" should have text "${text}"`, async () => {
+      const locator: Locator = this.getLocator(selectorProps)
+      await expect(locator, {
+        message: this.getErrorMessage(`does not have text "${text}"`)
+      }).toHaveText(text)
     })
   }
 

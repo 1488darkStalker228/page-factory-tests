@@ -21,8 +21,9 @@ export default class AppSidebar {
     })
     this.playersLink = new Link({
       page,
-      selector: '[class="app-sidebar__item-children"] >> nth=1 >> [href="/players"]',
-      name: 'players list page link'
+      selector: '[href="/players"]',
+      name: 'players list page link',
+      searchIn: this.playersList.locator
     })
   }
 

@@ -8,7 +8,7 @@ export default class Input extends BaseElement {
     return 'input'
   }
 
-  async fill(value: string = getRandomString()) {
+  public async fill(value: string = getRandomString()) {
     await test.step(`Fill ${this.typeOf} "${this.componentName}" to value "${value}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(async () => {
@@ -18,7 +18,7 @@ export default class Input extends BaseElement {
     })
   }
 
-  async checkValue(value: string) {
+  public async checkValue(value: string) {
     await test.step(`Checking that ${this.typeOf} "${this.componentName}" has a value "${value}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator).toHaveValue(value)

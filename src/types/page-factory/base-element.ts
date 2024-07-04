@@ -11,6 +11,7 @@ export type BaseElementProps = {
   page: Page
   selector: string
   name?: string
+  searchIn?: Locator
 }
 
 /* 

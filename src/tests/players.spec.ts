@@ -12,11 +12,24 @@ test.describe('Tests of Players section', () => {
 
     await modalCreateNewPlayer.nameInput.fill()
 
-    await modalCreateNewPlayer.fillAddress()
+    // await modalCreateNewPlayer.addressDropdown.fillAddress()
+    //
+    // await modalCreateNewPlayer.storeNumberInput.fill()
+    //
+    // await modalCreateNewPlayer.divisionCodeInput.fill()
+    //
+    // await modalCreateNewPlayer.workModeDropdown.selectItemFromDropdown('work-mode__autotests')
+    //
+    // await modalCreateNewPlayer.settingsProfileDropdown.selectItemFromDropdown(
+    //   'settings-profile__autotests'
+    // )
+    //
+    // await modalCreateNewPlayer.scheduleDropdown.selectItemFromDropdown(
+    //   'edit-player-schedules-page__auto-tests'
+    // )
 
-    await modalCreateNewPlayer.storeNumberInput.fill()
+    await modalCreateNewPlayer.mediaPlansDropdown.selectItemsFromMultipleDropdown()
 
-    await modalCreateNewPlayer.divisionCodeInput.fill()
     await page.waitForTimeout(5000)
   })
 })
