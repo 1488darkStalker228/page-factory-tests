@@ -3,8 +3,8 @@ import getCmsAccessToken from '../utils/get-cms-access-token'
 
 export default class PlayersRequests {
   constructor(
-    readonly page: Page,
-    readonly request: APIRequestContext
+    private readonly page: Page,
+    private readonly request: APIRequestContext
   ) {}
 
   public async paged(searchQuery?: string): Promise<number> {

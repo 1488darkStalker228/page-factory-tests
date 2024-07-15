@@ -2,8 +2,8 @@ import BaseElement from './base-element'
 import test from '@playwright/test'
 
 export default class Block extends BaseElement {
-  get typeOf(): string {
-    return 'block'
+  public get typeOf(): string {
+    return 'Блок'
   }
 
   public async getInnerText() {

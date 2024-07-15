@@ -1,10 +1,8 @@
-import { APIRequestContext, Fixtures, Page, PlaywrightTestArgs } from '@playwright/test'
+import { APIRequestContext, Fixtures, Page, PlaywrightTestArgs, request } from '@playwright/test'
 import AuthorizationPage from '../pages/Authorization/AuthorizationPage'
-import AppSidebar from '../components/App/AppSidebar'
-import PlayersActor from '../actors/playersActor'
 import mockStaticRecourses from '../utils/mocks/static-mock'
 import PlayersListPage from '../pages/Players/PlayersListPage'
-import ModalCreateNewPlayer from '../components/Modals/ModalCreateNewPlayer'
+import PlayerEditorPage from '../pages/Players/PlayerEditorPage'
 
 /*
 Это расширение базовой фикстуры page;
@@ -24,27 +22,19 @@ export const contextPageFixture: Fixtures<ContextPageFixture, PlaywrightTestArgs
 
 export type CustomFixtures = {
   request: APIRequestContext
-  playersActor: PlayersActor
   authorizationPage: AuthorizationPage
-  appSidebar: AppSidebar
   playersListPage: PlayersListPage
-  modalCreateNewPlayer: ModalCreateNewPlayer
+  playerEditorPage: PlayerEditorPage
 }
 
 export const customFixtures: Fixtures<CustomFixtures, ContextPageFixture> = {
   async authorizationPage({ contextPage }, use) {
     await use(new AuthorizationPage(contextPage))
   },
-  async playersActor({ contextPage, request }, use) {
-    await use(new PlayersActor(contextPage, request))
+  async playersListPage({ contextPage, request }, use) {
+    await use(new PlayersListPage(contextPage, request))
   },
-  async appSidebar({ contextPage }, use) {
-    await use(new AppSidebar(contextPage))
-  },
-  async playersListPage({ contextPage }, use) {
-    await use(new PlayersListPage(contextPage))
-  },
-  async modalCreateNewPlayer({ contextPage }, use) {
-    await use(new ModalCreateNewPlayer(contextPage))
+  async playerEditorPage({ contextPage }, use) {
+    await use(new PlayerEditorPage(contextPage))
   }
 }

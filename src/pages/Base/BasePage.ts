@@ -1,16 +1,15 @@
-import test, { Page } from '@playwright/test'
+import test, { expect, Page } from '@playwright/test'
 import AppSidebar from '../../components/App/AppSidebar'
 
-//Страница для обёртки базовых методов. Нужно для создания более красивого отчёта;
 export default abstract class BasePage {
   readonly appSidebar: AppSidebar
 
-  protected constructor(readonly page: Page) {
+  public constructor(readonly page: Page) {
     this.appSidebar = new AppSidebar(page)
   }
 
-  public async visit(url: string) {
-    await test.step(`Opening the url "${url}"`, async () => {
+  public async goto(url: string) {
+    await test.step(`Перейти по адресу "${url}"`, async () => {
       await this.page.goto(url, { waitUntil: 'networkidle' })
     })
   }
@@ -18,6 +17,12 @@ export default abstract class BasePage {
   public async reload() {
     await test.step(`Reloading page with url "${this.page.url()}"`, async () => {
       await this.page.reload({ waitUntil: 'domcontentloaded' })
+    })
+  }
+
+  public async checkUrl(expectedUrl: string) {
+    await test.step(`Страница должна содержать url "${expectedUrl}"`, async () => {
+      await expect(this.page).toHaveURL(new RegExp(expectedUrl))
     })
   }
 }

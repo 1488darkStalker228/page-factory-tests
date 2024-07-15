@@ -1,15 +1,14 @@
 import { Page } from '@playwright/test'
-import Input from '../../page-factory/elements/input'
+import Input from '../../page-factory/simple-elements/input'
 import BasePage from '../Base/BasePage'
-import Button from '../../page-factory/elements/button'
+import Button from '../../page-factory/simple-elements/button'
 
 export default class AuthorizationPage extends BasePage {
-  //Каждый локатор это экземпляр от класса из page-factory;
-  private readonly emailInput: Input
-  private readonly passwordInput: Input
-  private readonly loginBtn: Button
+  public readonly emailInput: Input
+  public readonly passwordInput: Input
+  public readonly loginBtn: Button
 
-  constructor(readonly page: Page) {
+  public constructor(page: Page) {
     super(page)
     this.emailInput = new Input({
       page,
@@ -29,7 +28,7 @@ export default class AuthorizationPage extends BasePage {
   }
 
   public async authorization() {
-    await this.visit('/')
+    await this.goto('/')
     await this.emailInput.fill('Kakayanaxuypoct@yandex.ru')
     await this.passwordInput.fill('14881337xX!')
     await this.loginBtn.click()

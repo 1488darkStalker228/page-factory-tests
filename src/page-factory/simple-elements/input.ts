@@ -1,15 +1,15 @@
 import test, { expect, Locator } from '@playwright/test'
-import { SelectorProps } from '../../types/page-factory/base-element'
 import BaseElement from './base-element'
 import { getRandomString } from '../../utils/get-randon'
 
 export default class Input extends BaseElement {
-  get typeOf(): string {
-    return 'input'
+  public get typeOf(): string {
+    return 'Инпут'
   }
 
   public async fill(value: string = getRandomString()) {
-    await test.step(`Fill ${this.typeOf} "${this.componentName}" to value "${value}"`, async () => {
+    //Заполнение Инпут "search input on players list page" значением "Валюе";
+    await test.step(`Заполнение ${this.typeOf} "${this.elementName}" значением "${value}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(async () => {
         await locator.fill(value)
@@ -18,10 +18,16 @@ export default class Input extends BaseElement {
     })
   }
 
+  //Здесь он почему-то не вызывает кастомное сообщение;
   public async checkValue(value: string) {
-    await test.step(`Checking that ${this.typeOf} "${this.componentName}" has a value "${value}"`, async () => {
+    //Инпут "search input on players list page" должен иметь значение "Валюе";
+    await test.step(`${this.typeOf} "${this.elementName}" должен иметь значение "${value}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator).toHaveValue(value)
     })
+  }
+
+  public async getValue(): Promise<string> {
+    return await this.getLocator().inputValue()
   }
 }

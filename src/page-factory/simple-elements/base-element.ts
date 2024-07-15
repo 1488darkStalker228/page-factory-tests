@@ -1,103 +1,100 @@
 import { expect, Locator, Page, test } from '@playwright/test'
-import {
-  BaseElementProps,
-  ElementAttribute,
-  SelectorProps
-} from '../../types/page-factory/base-element'
-import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter'
-import selectorStringHandler from '../selector-string-handler'
+import { BaseElementProps } from '../../types/page-factory/base-element'
+
+type ElementAttribute = { name: string; value: string }
 
 export default abstract class BaseElement {
-  //Просто обязательно описываем поля, которые у нас будут;
-  readonly page: Page
-  readonly selector: string
+  private readonly page: Page
+  private readonly selector: string
   private readonly name: string | undefined
-  readonly searchIn: Locator | undefined
-  readonly locator: Locator
-  /*
-    В данный конструктор действительно закидывается объект с определённым нами типом;
-    Таким образом, мы получаем доступ к нужным нам ключам объекта без точки "." и сразу видим, что в этом объекте лежит;
-  */
-  constructor({ page, selector, name, searchIn }: BaseElementProps) {
+  private readonly searchIn: Locator | undefined
+
+  public constructor({ page, selector, name, searchIn }: BaseElementProps) {
     this.page = page
     this.selector = selector
     this.name = name
     this.searchIn = searchIn
-    this.locator = this.getLocator()
   }
 
-  public getLocator(selectorProps: SelectorProps = {}): Locator {
-    //Кладём в константу locator значение ключа locator (если он есть), а все остальные свойства кладём в создаваемый объект context;
-    const { selector, ...context } = selectorProps
+  public getLocator(): Locator {
     if (this.searchIn) {
-      return this.searchIn.locator(selectorStringHandler(selector || this.selector, context))
+      return this.searchIn.locator(this.selector)
     } else {
-      return this.page.locator(selectorStringHandler(selector || this.selector, context))
+      return this.page.locator(this.selector)
     }
   }
 
-  //Для отчёта;
   public get typeOf(): string {
-    return 'component'
+    return 'Базовый элемент'
   }
 
-  public get typeOfUpper(): string {
-    return capitalizeFirstLetter(this.typeOf)
-  }
-
-  public get componentName(): string {
-    //Оператор подавления;
+  public get elementName(): string {
     if (!this.name) {
-      throw Error('Provide "name" property to use "componentName"')
+      throw Error('Укажите свойство "name" для использования "elementName"')
     }
     return this.name
   }
 
   private getErrorMessage(action: string): string {
-    return `The ${this.typeOf} with name "${this.componentName}" and locator ${this.selector} ${action}`
+    //Инпут с названием "search input on players list page" и селектором [class="ui-input__element"] не отображается/не содержит нужный текст и т.д;
+    return `${this.typeOf} с названием "${this.elementName}" и селектором ${this.selector} ${action}`
   }
 
-  public async checkVisible(selectorProps: SelectorProps = {}) {
-    await test.step(`${this.typeOfUpper} "${this.componentName}" should be visible on the page`, async () => {
-      const locator: Locator = this.getLocator(selectorProps)
+  public async checkVisible() {
+    //Инпут "search input on players list page" должен отображаться на странице;
+    await test.step(`${this.typeOf} "${this.elementName}" должен отображаться на странице`, async () => {
+      const locator: Locator = this.getLocator()
       await expect(locator, {
-        message: this.getErrorMessage('is not visible')
+        message: this.getErrorMessage('не отображается')
       }).toBeVisible()
     })
   }
 
-  public async checkContainText(text: string, selectorProps: SelectorProps = {}) {
-    await test.step(`${this.typeOfUpper} "${this.componentName}" should contain text "${text}"`, async () => {
-      const locator: Locator = this.getLocator(selectorProps)
+  public async checkHide() {
+    //Инпут "search input on players list page" не должен отображаться на странице;
+    await test.step(`${this.typeOf} "${this.elementName}" не должен отображаться на странице`, async () => {
+      const locator: Locator = this.getLocator()
       await expect(locator, {
-        message: this.getErrorMessage(`does not have text "${text}"`)
+        message: this.getErrorMessage('отображается')
+      }).toBeHidden()
+    })
+  }
+
+  public async checkContainText(text: string) {
+    //Инпут "search input on players list page" должен содержать текст "Текст";
+    await test.step(`${this.typeOf} "${this.elementName}" должен содержать текст "${text}"`, async () => {
+      const locator: Locator = this.getLocator()
+      await expect(locator, {
+        message: this.getErrorMessage(`не содержит текста "${text}"`)
       }).toContainText(text)
     })
   }
 
-  public async checkHaveText(text: string, selectorProps: SelectorProps = {}) {
-    await test.step(`${this.typeOfUpper} "${this.componentName}" should have text "${text}"`, async () => {
-      const locator: Locator = this.getLocator(selectorProps)
+  public async checkHaveText(text: string) {
+    //Инпут "search input on players list page" должен иметь текст "Текст";
+    await test.step(`${this.typeOf} "${this.elementName}" должен иметь текст "${text}"`, async () => {
+      const locator: Locator = this.getLocator()
       await expect(locator, {
-        message: this.getErrorMessage(`does not have text "${text}"`)
+        message: this.getErrorMessage(`не имеет текста "${text}"`)
       }).toHaveText(text)
     })
   }
 
-  public async click(selectorProps: SelectorProps = {}) {
-    await test.step(`Clicking the ${this.typeOf} with name "${this.componentName}"`, async () => {
-      const locator: Locator = this.getLocator(selectorProps)
-      await locator.click()
+  public async checkAttribute({ name, value }: ElementAttribute) {
+    //Инпут "search input on players list page" должен иметь атрибут data-active="true";
+    await test.step(`${this.typeOf} "${this.elementName}" должен иметь атрибут ${name}="${value}"`, async () => {
+      const locator: Locator = this.getLocator()
+      await expect(locator, {
+        message: this.getErrorMessage(`не имеет атрибута ${name}="${value}"`)
+      }).toHaveAttribute(name, value)
     })
   }
 
-  //Нужно разобраться с этими блядскими параметрами; Я нихера не пойму, зачем нужны селектор-прапсы?
-  //Какая-то зацыпка была. Мессага тоже должна быть кастомная;
-  public async checkAttribute(attribute: ElementAttribute, selectorProps: SelectorProps = {}) {
-    const { name, value } = attribute
-    await test.step(`${this.typeOfUpper} '${this.componentName}' should have attribute '${name}=${value}'`, async () => {
-      const locator: Locator = this.getLocator(selectorProps)
-      await expect(locator).toHaveAttribute(name, value)
+  public async click() {
+    //Клик по Инпуту с названием "search input";
+    await test.step(`Клик по ${this.typeOf} с названием "${this.elementName}"`, async () => {
+      const locator: Locator = this.getLocator()
+      await locator.click()
     })
   }
 }
