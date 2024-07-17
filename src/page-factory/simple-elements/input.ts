@@ -4,26 +4,28 @@ import { getRandomString } from '../../utils/get-randon'
 
 export default class Input extends BaseElement {
   public get typeOf(): string {
-    return 'Инпут'
+    return 'инпут'
   }
 
   public async fill(value: string = getRandomString()) {
     //Заполнение Инпут "search input on players list page" значением "Валюе";
-    await test.step(`Заполнение ${this.typeOf} "${this.elementName}" значением "${value}"`, async () => {
+    await test.step(`Заполнение ${this.typeOf}а "${this.name}" значением "${value}"`, async () => {
       const locator: Locator = this.getLocator()
-      await expect(async () => {
-        await locator.fill(value)
-        await this.checkValue(value)
-      }).toPass()
+      await expect(
+        async () => {
+          await locator.fill(value)
+          await this.checkValue(value)
+        },
+        { message: this.getErrorMessage(`не заполняется`) }
+      ).toPass({ timeout: 10000 })
     })
   }
 
-  //Здесь он почему-то не вызывает кастомное сообщение;
   public async checkValue(value: string) {
     //Инпут "search input on players list page" должен иметь значение "Валюе";
-    await test.step(`${this.typeOf} "${this.elementName}" должен иметь значение "${value}"`, async () => {
+    await test.step(`${this.capitalizeFirstLetter(this.typeOf)} "${this.name}" должен иметь значение "${value}"`, async () => {
       const locator: Locator = this.getLocator()
-      await expect(locator).toHaveValue(value)
+      await expect(locator, this.getErrorMessage(`не имеет значения "${value}"`)).toHaveValue(value)
     })
   }
 

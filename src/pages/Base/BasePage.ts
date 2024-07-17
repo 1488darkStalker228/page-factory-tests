@@ -22,7 +22,7 @@ export default abstract class BasePage {
 
   public async checkUrl(expectedUrl: string) {
     await test.step(`Страница должна содержать url "${expectedUrl}"`, async () => {
-      await expect(this.page).toHaveURL(new RegExp(expectedUrl))
+      await expect(this.page, 'url не содержится').toHaveURL(new RegExp(expectedUrl))
     })
   }
 }

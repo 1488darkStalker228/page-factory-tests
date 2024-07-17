@@ -13,7 +13,9 @@ export default defineConfig({
   reporter: [['html'], ['allure-playwright']],
   use: {
     baseURL: 'https://cms-test.cubicservice.ru/',
-    trace: 'on-first-retry'
+    trace: 'on-first-retry',
+    // video: 'on',
+    // screenshot: 'on'
   },
   projects: [
     {

@@ -4,6 +4,6 @@ import { Locator, Page } from '@playwright/test'
 export type BaseElementProps = {
   page: Page
   selector: string
-  name?: string
+  name: string
   searchIn?: Locator
 }

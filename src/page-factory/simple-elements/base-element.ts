@@ -6,7 +6,7 @@ type ElementAttribute = { name: string; value: string }
 export default abstract class BaseElement {
   private readonly page: Page
   private readonly selector: string
-  private readonly name: string | undefined
+  public readonly name: string
   private readonly searchIn: Locator | undefined
 
   public constructor({ page, selector, name, searchIn }: BaseElementProps) {
@@ -14,6 +14,24 @@ export default abstract class BaseElement {
     this.selector = selector
     this.name = name
     this.searchIn = searchIn
+  }
+
+  public capitalizeFirstLetter(word: string) {
+    return word[0].toUpperCase() + word.slice(1)
+  }
+
+  public getAssertionName() {
+    let assertionName: string
+    switch (this.typeOf) {
+      case 'кнопка':
+      case 'иконка':
+      case 'ссылка':
+        assertionName = 'должна'
+        break
+      default:
+        assertionName = 'должен'
+    }
+    return assertionName
   }
 
   public getLocator(): Locator {
@@ -25,24 +43,17 @@ export default abstract class BaseElement {
   }
 
   public get typeOf(): string {
-    return 'Базовый элемент'
+    return 'базовый элемент'
   }
 
-  public get elementName(): string {
-    if (!this.name) {
-      throw Error('Укажите свойство "name" для использования "elementName"')
-    }
-    return this.name
-  }
-
-  private getErrorMessage(action: string): string {
+  public getErrorMessage(action: string): string {
     //Инпут с названием "search input on players list page" и селектором [class="ui-input__element"] не отображается/не содержит нужный текст и т.д;
-    return `${this.typeOf} с названием "${this.elementName}" и селектором ${this.selector} ${action}`
+    return `${this.capitalizeFirstLetter(this.typeOf)} с названием "${this.name}" и селектором ${this.selector} ${action}`
   }
 
   public async checkVisible() {
     //Инпут "search input on players list page" должен отображаться на странице;
-    await test.step(`${this.typeOf} "${this.elementName}" должен отображаться на странице`, async () => {
+    await test.step(`${this.capitalizeFirstLetter(this.typeOf)} "${this.name}" должен отображаться на странице`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator, {
         message: this.getErrorMessage('не отображается')
@@ -52,7 +63,7 @@ export default abstract class BaseElement {
 
   public async checkHide() {
     //Инпут "search input on players list page" не должен отображаться на странице;
-    await test.step(`${this.typeOf} "${this.elementName}" не должен отображаться на странице`, async () => {
+    await test.step(`${this.capitalizeFirstLetter(this.typeOf)} "${this.name}" не должен отображаться на странице`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator, {
         message: this.getErrorMessage('отображается')
@@ -62,7 +73,7 @@ export default abstract class BaseElement {
 
   public async checkContainText(text: string) {
     //Инпут "search input on players list page" должен содержать текст "Текст";
-    await test.step(`${this.typeOf} "${this.elementName}" должен содержать текст "${text}"`, async () => {
+    await test.step(`${this.capitalizeFirstLetter(this.typeOf)} "${this.name}" ${this.getAssertionName()} содержать текст "${text}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator, {
         message: this.getErrorMessage(`не содержит текста "${text}"`)
@@ -72,7 +83,7 @@ export default abstract class BaseElement {
 
   public async checkHaveText(text: string) {
     //Инпут "search input on players list page" должен иметь текст "Текст";
-    await test.step(`${this.typeOf} "${this.elementName}" должен иметь текст "${text}"`, async () => {
+    await test.step(`${this.capitalizeFirstLetter(this.typeOf)} "${this.name}" ${this.getAssertionName()} иметь текст "${text}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator, {
         message: this.getErrorMessage(`не имеет текста "${text}"`)
@@ -82,7 +93,7 @@ export default abstract class BaseElement {
 
   public async checkAttribute({ name, value }: ElementAttribute) {
     //Инпут "search input on players list page" должен иметь атрибут data-active="true";
-    await test.step(`${this.typeOf} "${this.elementName}" должен иметь атрибут ${name}="${value}"`, async () => {
+    await test.step(`${this.capitalizeFirstLetter(this.typeOf)} "${this.name}" ${this.getAssertionName()} иметь атрибут ${name}="${value}"`, async () => {
       const locator: Locator = this.getLocator()
       await expect(locator, {
         message: this.getErrorMessage(`не имеет атрибута ${name}="${value}"`)
@@ -91,8 +102,29 @@ export default abstract class BaseElement {
   }
 
   public async click() {
+    let elementName: string
+    switch (this.typeOf) {
+      case 'кнопка':
+        elementName = 'кнопке'
+        break
+      case 'блок':
+        elementName = 'блоку'
+        break
+      case 'иконка':
+        elementName = 'иконке'
+        break
+      case 'инпут':
+        elementName = 'инпуту'
+        break
+      case 'ссылка':
+        elementName = 'ссылке'
+        break
+      default:
+        elementName = this.typeOf
+    }
+
     //Клик по Инпуту с названием "search input";
-    await test.step(`Клик по ${this.typeOf} с названием "${this.elementName}"`, async () => {
+    await test.step(`Клик по ${elementName} с названием "${this.name}"`, async () => {
       const locator: Locator = this.getLocator()
       await locator.click()
     })

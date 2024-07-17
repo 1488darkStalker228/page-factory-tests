@@ -5,7 +5,7 @@ import ModalConfirm from '../../components/Modals/ModalConfirm'
 import Block from '../../page-factory/simple-elements/block'
 
 export default abstract class ListPage extends BasePage {
-  public readonly tableItem: TableItem
+  private readonly tableItem: TableItem
   public readonly modalConfirm: ModalConfirm
   public readonly itemsCounter: Block
 
@@ -22,15 +22,18 @@ export default abstract class ListPage extends BasePage {
 
   public async waitLoadingPageElements(counterFromServer: number) {
     await test.step('Ожидание загрузки элементов на странице', async () => {
-      await expect(async () => {
-        expect(
-          Number(
-            (await this.itemsCounter.getInnerText()).slice(
-              (await this.itemsCounter.getInnerText()).indexOf('из') + 3
+      await expect(
+        async () => {
+          expect(
+            Number(
+              (await this.itemsCounter.getInnerText()).slice(
+                (await this.itemsCounter.getInnerText()).indexOf('из') + 3
+              )
             )
-          )
-        ).toEqual(counterFromServer)
-      }).toPass()
+          ).toEqual(counterFromServer)
+        },
+        { message: 'Элементы не были загружены' }
+      ).toPass({ timeout: 10000 })
     })
   }
 

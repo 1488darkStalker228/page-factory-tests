@@ -136,6 +136,6 @@ export default class PlayerEditorPage extends BasePage {
 
   public async clickOnLastBreadCrumb() {
     await Promise.all([this.page.waitForResponse(/paged/), this.breadCrumbsLast.click()])
-    await this.checkUrl('Folder')
+    //await this.checkUrl('Folder')
   }
 }

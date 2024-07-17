@@ -4,7 +4,7 @@ import Block from '../page-factory/simple-elements/block'
 
 export default class TableItem {
   public readonly itemBlock: Block
-  public readonly gotoEntityLink: Link
+  public readonly nameBlock: Link
 
   public constructor(readonly page: Page) {
     this.itemBlock = new Block({
@@ -12,28 +12,20 @@ export default class TableItem {
       selector: 'main[class^="ui-table-items-row"] >> nth=0',
       name: 'item block'
     })
-
-    this.gotoEntityLink = new Link({
+    this.nameBlock = new Link({
       page,
-      selector: 'a',
-      name: 'goto entity link',
+      selector: '[class="ui-text"] >> nth=0',
+      name: 'name block',
       searchIn: this.itemBlock.getLocator()
     })
   }
 
   public async gotoEntity(responseUrl: string) {
-    await Promise.all([
-      this.page.waitForResponse(new RegExp(responseUrl)),
-      this.gotoEntityLink.click()
-    ])
+    await Promise.all([this.page.waitForResponse(new RegExp(responseUrl)), this.nameBlock.click()])
   }
 
   public async click() {
     await this.itemBlock.click()
     await this.itemBlock.checkAttribute({ name: 'data-selected', value: 'true' })
-  }
-
-  public async getItemText(): Promise<Array<string>> {
-    return (await this.itemBlock.getInnerText()).split('\n')
   }
 }

@@ -3,7 +3,7 @@ import test from '@playwright/test'
 
 export default class Block extends BaseElement {
   public get typeOf(): string {
-    return 'Блок'
+    return 'блок'
   }
 
   public async getInnerText() {

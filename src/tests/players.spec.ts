@@ -1,15 +1,9 @@
-import { test } from './add-fuxtures'
+import { test } from '../fixtures/players'
 
 export type PlayerData = { [key: string]: string }
 
 test.describe('Tests of Players section', () => {
-  test.beforeEach(async ({ authorizationPage }) => {
-    await test.step('Авторизация', async () => {
-      await authorizationPage.authorization()
-    })
-  })
-
-  test('Create player', async ({ playersListPage, playerEditorPage, page }) => {
+  test('Create player', async ({ playersListPage, playerEditorPage }) => {
     const playerData: PlayerData = {
       name: 'test-player__autotests',
       address: 'Ростов-на-Дону',
