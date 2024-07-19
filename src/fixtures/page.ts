@@ -12,7 +12,10 @@ export const extendedPageFixture: Fixtures<ExtendedPageFixture> = {
       await mockStaticRecourses(page)
     })
     await test.step('Авторизация', async () => {
-      await new AuthorizationPage(page).authorization()
+      await new AuthorizationPage(page).authorization({
+        login: 'Kakayanaxuypoct@yandex.ru',
+        password: '14881337xX!'
+      })
     })
     await use(page)
   }

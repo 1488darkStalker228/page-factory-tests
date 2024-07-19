@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test'
-import Link from '../page-factory/simple-elements/link'
-import Block from '../page-factory/simple-elements/block'
+import Link from '../../page-factory/simple-elements/link'
+import Block from '../../page-factory/simple-elements/block'
 
 export default class TableItem {
   public readonly itemBlock: Block

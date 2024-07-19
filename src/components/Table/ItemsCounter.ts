@@ -1,18 +1,10 @@
-import BasePage from './BasePage'
-import TableItem from '../../components/TableItem'
-import test, { expect, Locator, Page } from '@playwright/test'
-import ModalConfirm from '../../components/Modals/ModalConfirm'
+import test, { expect, Page } from '@playwright/test'
 import Block from '../../page-factory/simple-elements/block'
 
-export default abstract class ListPage extends BasePage {
-  private readonly tableItem: TableItem
-  public readonly modalConfirm: ModalConfirm
+export default class ItemsCounter {
   public readonly itemsCounter: Block
 
-  public constructor(page: Page) {
-    super(page)
-    this.tableItem = new TableItem(page)
-    this.modalConfirm = new ModalConfirm(page)
+  constructor(page: Page) {
     this.itemsCounter = new Block({
       page,
       selector: '[class="ui-pagination__item"] >> nth=0',
@@ -35,11 +27,5 @@ export default abstract class ListPage extends BasePage {
         { message: 'Элементы не были загружены' }
       ).toPass({ timeout: 10000 })
     })
-  }
-
-  public async deleteItem(deleteIcon: Locator) {
-    await this.tableItem.click()
-    await deleteIcon.click()
-    await this.modalConfirm.clickOnConfirmBtn('remove')
   }
 }

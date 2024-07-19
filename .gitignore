@@ -1,8 +1,10 @@
 .idea/
 /allure-results/
+/allure-report
 node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 debug.ts
+playwright-core.tar.gz

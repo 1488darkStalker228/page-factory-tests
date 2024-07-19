@@ -1,6 +1,6 @@
 import TableItem from './TableItem'
 import { Page } from '@playwright/test'
-import Block from '../page-factory/simple-elements/block'
+import Block from '../../page-factory/simple-elements/block'
 
 export default class PlayerTableItem extends TableItem {
   public nameBlock: Block

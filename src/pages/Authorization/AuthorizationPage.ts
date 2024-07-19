@@ -3,6 +3,8 @@ import Input from '../../page-factory/simple-elements/input'
 import BasePage from '../Base/BasePage'
 import Button from '../../page-factory/simple-elements/button'
 
+type Authorization = { login: string; password: string }
+
 export default class AuthorizationPage extends BasePage {
   public readonly emailInput: Input
   public readonly passwordInput: Input
@@ -27,10 +29,10 @@ export default class AuthorizationPage extends BasePage {
     })
   }
 
-  public async authorization() {
+  public async authorization({ login, password }: Authorization) {
     await this.goto('/')
-    await this.emailInput.fill('Kakayanaxuypoct@yandex.ru')
-    await this.passwordInput.fill('14881337xX!')
+    await this.emailInput.fill(login)
+    await this.passwordInput.fill(password)
     await this.loginBtn.click()
   }
 }

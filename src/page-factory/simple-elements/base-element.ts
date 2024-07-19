@@ -16,11 +16,11 @@ export default abstract class BaseElement {
     this.searchIn = searchIn
   }
 
-  public capitalizeFirstLetter(word: string) {
+  public capitalizeFirstLetter(word: string): string {
     return word[0].toUpperCase() + word.slice(1)
   }
 
-  public getAssertionName() {
+  private getAssertionName(): string {
     let assertionName: string
     switch (this.typeOf) {
       case 'кнопка':
@@ -32,6 +32,30 @@ export default abstract class BaseElement {
         assertionName = 'должен'
     }
     return assertionName
+  }
+
+  private getElementName(): string {
+    let elementName: string
+    switch (this.typeOf) {
+      case 'кнопка':
+        elementName = 'кнопке'
+        break
+      case 'блок':
+        elementName = 'блоку'
+        break
+      case 'иконка':
+        elementName = 'иконке'
+        break
+      case 'инпут':
+        elementName = 'инпуту'
+        break
+      case 'ссылка':
+        elementName = 'ссылке'
+        break
+      default:
+        elementName = this.typeOf
+    }
+    return elementName
   }
 
   public getLocator(): Locator {
@@ -102,29 +126,8 @@ export default abstract class BaseElement {
   }
 
   public async click() {
-    let elementName: string
-    switch (this.typeOf) {
-      case 'кнопка':
-        elementName = 'кнопке'
-        break
-      case 'блок':
-        elementName = 'блоку'
-        break
-      case 'иконка':
-        elementName = 'иконке'
-        break
-      case 'инпут':
-        elementName = 'инпуту'
-        break
-      case 'ссылка':
-        elementName = 'ссылке'
-        break
-      default:
-        elementName = this.typeOf
-    }
-
     //Клик по Инпуту с названием "search input";
-    await test.step(`Клик по ${elementName} с названием "${this.name}"`, async () => {
+    await test.step(`Клик по ${this.getElementName()} с названием "${this.name}"`, async () => {
       const locator: Locator = this.getLocator()
       await locator.click()
     })
