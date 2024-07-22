@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: playwright-tests
 on:
   workflow_dispatch:
   push:
@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  playwright:
-    name: "Playwright Tests"
+  playwright-tests:
+    name: "playwright-tests"
     runs-on: ubuntu-latest
     container:
       image: darkstalker1488/page-factory-tests
@@ -18,9 +18,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run your tests
+      - name: Run tests
         run: npx playwright test
-      - name: Show report
-        run: allure serve
-#        env:
-#          HOME: /roots
+#      - name: Show report
+#        run: allure serve
