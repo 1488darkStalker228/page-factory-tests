@@ -10,14 +10,14 @@ jobs:
     name: "Playwright Tests"
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.44.1-jammy
+      image: darkstalker1488/page-factory-tests
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Install dependencies
-        run: npm ci
+#      - name: Install dependencies
+#        run: npm ci
       - name: Run your tests
         run: npx playwright test
         env:
