@@ -12,12 +12,12 @@ jobs:
     container:
       image: darkstalker1488/page-factory-tests
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 18
+          node-version: 20
       - name: Install dependencies
-        run: sudo npm install -g --unsafe-perm=true --allow-root
+        run: npm ci
       - name: Run tests
         run: npx playwright test
 #      - name: Show report
