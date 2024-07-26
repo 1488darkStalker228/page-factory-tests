@@ -46,16 +46,16 @@ export default class PlayersListPage extends BasePage {
   public async gotoPageAndFolder(searchQuery: string) {
     await this.appSidebar.gotoPlayersPageIsDropdown()
     await this.itemsCounter.waitLoadingPageElements(await this.playersRequests.paged())
-    // await this.searchInput.fill('root-folder__autotests')
-    // await this.itemsCounter.waitLoadingPageElements(
-    //   await this.playersRequests.paged('root-folder__autotests')
-    // )
-    // await this.playerTableItem.gotoEntity('paged')
-    // await this.checkUrl('Folder')
-    // await this.searchInput.fill(searchQuery)
-    // await this.itemsCounter.waitLoadingPageElements(await this.playersRequests.paged(searchQuery))
-    // await this.playerTableItem.gotoEntity('paged')
-    // await this.checkUrl('Folder')
+    await this.searchInput.fill('root-folder__autotests')
+    await this.itemsCounter.waitLoadingPageElements(
+      await this.playersRequests.paged('root-folder__autotests')
+    )
+    await this.playerTableItem.gotoEntity('paged')
+    await this.checkUrl('Folder')
+    await this.searchInput.fill(searchQuery)
+    await this.itemsCounter.waitLoadingPageElements(await this.playersRequests.paged(searchQuery))
+    await this.playerTableItem.gotoEntity('paged')
+    await this.checkUrl('Folder')
   }
 
   public async checkItemData({ name, storeNumber, divisionCode, authorizationKey }: PlayerData) {
