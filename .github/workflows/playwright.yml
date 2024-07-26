@@ -1,4 +1,7 @@
-name: playwright-tests
+#Заголовков пайпа на гитхабе будет иметь название коммита;
+
+#Название пайпа;
+name: playwright-tests-hyq
 on:
   workflow_dispatch:
   push:
@@ -6,11 +9,13 @@ on:
       - master
 
 jobs:
-  playwright-tests:
-    name: "playwright-tests"
+  #Название джоба на карте
+  playwright-tests-pz:
+    name: "playwright-tests-ass"
     runs-on: ubuntu-latest
     container:
       image: darkstalker1488/page-factory-tests-no-hb
+    #Названия шагов, которые будут отображены в пайпе;
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,14 +25,11 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npx playwright test
-#      - name: Show report
-#        run: allure serve
-#  other-job:
-#    name: "cucoldher-job"
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: PROSTO
-#        run: cd /
+  other-job:
+    name: "cucoldher-job"
+    runs-on: ubuntu-latest
+    steps:
+      - name: PROSTO
+        run: cd /
 
-#Названия шагов, которые будут отображены в пайпоте;
-#Название пайпоты;
+
