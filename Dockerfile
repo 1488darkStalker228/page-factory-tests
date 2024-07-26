@@ -1,5 +1,5 @@
 # Берём за основу образ Homebrew на Ubuntu 22.04, это нужно для установки allure;
-FROM homebrew/brew
+FROM homebrew/brew:4.3.5
 
 # Homebrew создаёт внутри себя пользователя linuxbrew. Временно переключаемся на рута, для запуска нижеперечисленных команд;
 USER root
