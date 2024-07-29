@@ -4,7 +4,7 @@
 name: playwright-tests
 on:
   #Для запуска пайпа из стороннего репозитория;
-  workflow_dispatch:
+#  workflow_dispatch:
 #  push:
 #    branches:
 #      - master
