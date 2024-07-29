@@ -3,6 +3,7 @@
 #Название пайпа;
 name: playwright-tests
 on:
+  #Для запуска пайпа из стороннего репозитория;
   workflow_dispatch:
   push:
     branches:
@@ -13,20 +14,39 @@ jobs:
     #Название джоба на карте
     name: "playwright-tests"
     runs-on: ubuntu-latest
-    container:
-      image: darkstalker1488/page-factory-tests-no-hb
-    #Названия шагов, которые будут отображены в джобе;
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v4
       - name: "Setup node.js"
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - name: "Install dependencies"
         run: npm ci
+      - name: "Install Playwright"
+        run: npx playwright install --with-deps
       - name: "Run tests"
-        run: npx playwright test
+        run: npx playwright test players.spec.ts
 
 
 
+
+#jobs:
+#  playwright-tests:
+#    #Название джоба на карте
+#    name: "playwright-tests"
+#    runs-on: ubuntu-latest
+#    container:
+#      image: darkstalker1488/page-factory-tests-no-hb
+#    #Названия шагов, которые будут отображены в джобе;
+#    steps:
+#      - name: "Checkout repository"
+#        uses: actions/checkout@v4
+#      - name: "Setup node.js"
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#      - name: "Install dependencies"
+#        run: npm ci
+#      - name: "Run tests"
+#        run: npx playwright test
