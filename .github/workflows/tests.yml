@@ -1,15 +1,15 @@
 #Заголовок пайпа на гитхабе будет иметь название коммита;
 
 #Название пайпа;
-name: playwright-tests
+name: tests
 on:
   #Для запуска пайпа из стороннего репозитория;
   workflow_dispatch:
 
 jobs:
-  playwright-tests:
+  tests:
     #Название джоба на карте
-    name: "playwright-tests"
+    name: "tests"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout repository"
