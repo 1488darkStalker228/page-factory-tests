@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test'
-import Block from '../../page-factory/simple-elements/block'
-import Button from '../../page-factory/simple-elements/button'
+import Block from '@page-factory/simple-elements/block'
+import Button from '@page-factory/simple-elements/button'
 
 export default class ModalBase {
   public readonly modal: Block
