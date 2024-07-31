@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test'
-import Icon from '../../page-factory/simple-elements/icon'
-import Block from '../../page-factory/simple-elements/block'
-import Link from '../../page-factory/simple-elements/link'
+import Icon from '@page-factory/simple-elements/icon'
+import Block from '@page-factory/simple-elements/block'
+import Link from '@page-factory/simple-elements/link'
 
 export default class AppSidebar {
   public readonly expandPlayersIcon: Icon

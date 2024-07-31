@@ -1,5 +1,5 @@
 import test, { expect, Page } from '@playwright/test'
-import AppSidebar from '../../components/App/AppSidebar'
+import AppSidebar from '@components/App/AppSidebar'
 
 export default abstract class BasePage {
   readonly appSidebar: AppSidebar
