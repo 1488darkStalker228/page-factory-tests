@@ -1,4 +1,4 @@
-import { test } from '../fixtures/players'
+import { test } from '@fixtures/players'
 
 export type PlayerData = { [key: string]: string }
 

@@ -58,7 +58,7 @@ export default class PlayerEditorPage extends BasePage {
     this.settingsTab = new Link({ page, selector: '[href$="/settings"]', name: 'settings tab' })
     this.settingsProfileAlert = new Block({
       page,
-      selector: '[class="ui-alert"]',
+      selector: '[class^="ui-alert"] >> nth=0',
       name: 'settings profile alert'
     })
     this.scheduleTab = new Link({
@@ -68,7 +68,7 @@ export default class PlayerEditorPage extends BasePage {
     })
     this.scheduleAlert = new Block({
       page,
-      selector: '[class="ui-alert"]',
+      selector: '[class^="ui-alert"] >> nth=0',
       name: 'schedule alert'
     })
     this.scheduleLink = new Link({
@@ -136,6 +136,6 @@ export default class PlayerEditorPage extends BasePage {
 
   public async clickOnLastBreadCrumb() {
     await Promise.all([this.page.waitForResponse(/paged/), this.breadCrumbsLast.click()])
-    //await this.checkUrl('Folder')
+    await this.checkUrl('Folder')
   }
 }
