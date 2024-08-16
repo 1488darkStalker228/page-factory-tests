@@ -4,11 +4,17 @@ import Block from '@page-factory/simple-elements/block'
 import Link from '@page-factory/simple-elements/link'
 
 export default class AppSidebar {
+  public readonly tracksLinkItem: Link
   public readonly expandPlayersIcon: Icon
   public readonly playersList: Block
   public readonly playersLink: Link
 
   public constructor(readonly page: Page) {
+    this.tracksLinkItem = new Block({
+      page,
+      selector: '[class="app-sidebar__item"] >> nth=1',
+      name: 'tracks item'
+    })
     this.expandPlayersIcon = new Icon({
       page,
       selector: '[class="app-sidebar__item-chevron"] >> nth=3 >> svg',
@@ -39,5 +45,10 @@ export default class AppSidebar {
       name: 'data-active',
       value: 'true'
     })
+  }
+
+  public async gotoPage() {
+    await this.tracksLinkItem.click()
+    await this.tracksLinkItem.checkAttribute({ name: 'data-active', value: 'true' })
   }
 }

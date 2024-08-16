@@ -1,13 +1,13 @@
-import { APIRequestContext, expect, Locator, Page } from '@playwright/test'
+import { APIRequestContext, Locator, Page } from '@playwright/test'
 import { PlayerData } from '../../tests/players.spec'
-import ModalCreateNewPlayer from '../../components/Modals/ModalCreateNewPlayer'
-import Input from '../../page-factory/simple-elements/input'
-import PlayersRequests from '../../requests/players-requests'
-import ActionIcon from '../../page-factory/extended-elements/action-icon'
-import PlayerTableItem from '../../components/Table/PlayerTableItem'
+import ModalCreateNewPlayer from '@components/Modals/ModalCreateNewPlayer'
+import Input from '@page-factory/simple-elements/input'
+import PlayersRequests from '@requests/players-requests'
+import ActionIcon from '@page-factory/extended-elements/action-icon'
+import PlayerTableItem from '@components/Table/PlayerTableItem'
 import BasePage from '../Base/BasePage'
-import ItemsCounter from '../../components/Table/ItemsCounter'
-import ModalConfirm from '../../components/Modals/ModalConfirm'
+import ItemsCounter from '@components/Table/ItemsCounter'
+import ModalConfirm from '@components/Modals/ModalConfirm'
 
 export default class PlayersListPage extends BasePage {
   public readonly searchInput: Input
