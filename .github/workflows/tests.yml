@@ -32,10 +32,10 @@ jobs:
         with:
           node-version: 20
       - name: "Set up JDK"
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: oracle
-          java-version: 17
+          java-version: 21
       - name: "Install allurectl"
         uses: allure-framework/setup-allurectl@v1
       - name: "Install dependencies"
