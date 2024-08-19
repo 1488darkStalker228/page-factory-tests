@@ -1,10 +1,10 @@
 import test, { expect, Page } from '@playwright/test'
-import Block from '../../page-factory/simple-elements/block'
+import Block from '@page-factory/simple-elements/block'
 
 export default class ItemsCounter {
   public readonly itemsCounter: Block
 
-  constructor(page: Page) {
+  constructor(readonly page: Page) {
     this.itemsCounter = new Block({
       page,
       selector: '[class="ui-pagination__item"] >> nth=0',

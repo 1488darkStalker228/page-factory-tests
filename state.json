@@ -1,0 +1,75 @@
+{
+  "cookies": [
+    {
+      "name": ".AspNetCore.Antiforgery.VyLW6ORzMgk",
+      "value": "CfDJ8LiCRzlWVrpErI6FZ6cmw_W7aIFtLNDuMzPRDN-7y7Db9nnNHlXbSjxx_AgHrXnZfRerUwqPQCRwU3QYTHNOmB0q9saFXV7iFUip0Se9c-wksX94SEYijlDFsMlE84mDdFXK3S_gTm1deGzcLYkO5yk",
+      "domain": "sso-test.cubicservice.ru",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Strict"
+    },
+    {
+      "name": ".AspNetCore.Culture",
+      "value": "c%3Dru%7Cuic%3Dru",
+      "domain": "sso-test.cubicservice.ru",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "idsrv.session",
+      "value": "7WoRWs1xdR2LTeusdgMP5Q",
+      "domain": "sso-test.cubicservice.ru",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": ".AspNetCore.Identity.Application",
+      "value": "chunks-2",
+      "domain": "sso-test.cubicservice.ru",
+      "path": "/",
+      "expires": 1724161789.559323,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": ".AspNetCore.Identity.ApplicationC1",
+      "value": "CfDJ8LiCRzlWVrpErI6FZ6cmw_WJ1I6ZuWuxu4ck4OKw0ytzYVjgMqR0qs3TL0IEfLbVjYV5VH010UAsTaGzlT5T6ZLdWggp2If91MVeF9mUVteoFtw3LxPdSmplLiG87841XyoJx5tKKsvbyGHUcBOe2e_Lkr9pgLVTm8577h_xWeHLQwEgZNZFhxDtK5xDg9YX64KjuwC2rjWE1RBjH_VZeTGpmmjXZACZgFNZxKUJAByU_6Mu7jCpWbslUgGl_aaQ_HqbHwe79H-EBncywMBgRLTqSMBIMO6OCnIVCJEuIrEuHQjdyG0tfdauPCn3zgmlQo9_KH2DU_7-8sy-eRZrav7wXu-oSztog-LAROj5Iv-TZ-mqfVucXh2TJZMedpTzxqywOyvKcv-GaZIigM06eZiNosksugTzA5iOvyp8w2Hutx9U4txGNLfD0kysEn9eOoLzhVhr1_RzrJaeEZqnDojv8Lo6wbqBOHnOy-0ZAR3RMkVJHG3WrvmJajjJHKIjSWWx_sMwLa4nziG97xKrtysJjXeHlS26eNGVB880FXTrP1WKJxzQBcVc8KsQQ9Cd8eGf5j4i-fxOgntckVLaUW3_1eR_nY2TawtRul3g8phAAl0h_cszUJUsGjVNKNAK4AmJYhRUs39HAsBANfxgSMbkxRheYOg3T8zLA0Bp368hqFDhehNcxvjjIBrgX_b-uWkACCIjp1879JLY0JIYf4X73OhOjuglATtEmQq_6TTC3bb_PXZmuduf3uWKzcGjje15rqqsUCmmfe5jKP6MQH19whO-Ymu_2KtEFcJNJ3pxXpAXCUXhkkCh_auMKtun_Ry_qFNBZ1yIY_HJVpd3ybj5DpLbHC2xR2NAgOhzkbq6YOz-ZPSZNWcdlD2GMZXri8lLetv4TptitLp48cCNpucqjPIZJC5sVm6y_37DR1f3dNp3wajFXnALJ5Mo4psYM3l1XI2BHtG7jll9dpDhhai6JUEtSjvjNUlAm_26cGYBqmXuTKwsbh_wAgE-MBSsKaGASe8ls3P40IfSpiQ8ri6N5FYO4ZnP-MGeLinXX2l-1xBMFN2FOUMm1MzeBatcBcB4LP696XzrHKryMkBR6WA1N1SGFpzyIOlV_bIFm1WTCt6oT5vTgOIKe2fZIvjJn5jOrOEFSd2GupOTm1Q0xO3VCVh7OGin2I1wzCWbpBRH0AXC2q9bF2c6bKVl8IQc2LJyrefoAJBwaIV5tCcvMU1nVw-XezhzD3aFlDZZJBkx0YNpWlzJRsugi4Wazfk9XsavRjEsaIzWGd7olIZAxE3h8KXwLtfAHl3quXHAmGAfEk3WbELSehsbcMsg6TzbNVI7DMw-PtTlKwfqcrX4k9eKLZ-7lqFlXwFN9loYlk9PaWXNVL6dLy3vyNRjWgNicQa90o12QbDQIBLR89Coo_Kpzi47nn0bFopEJgbrHUAIfGPQwFBG0fR6tOgediBgvItru7f5bICB877OFHZhoyhyh2nHcnsC_1YU7iKfxoj1V8788E4PlsXFzSRvBhhzrXFQXy6wsVAUgFiI4WIKwB0tFq2lvFCSOtc6HX15J9F2BrGxoUhs2AG_Iy1nE-kO5OK457S0nTnilr3LKpRtf9OPGNhHW-pG6qC3bZ8-VVpZN9OcdIsDXKdDYTrlGbdmaaRhmmPxq6Zk1hGQ1cE1JIkAtMqKE3d97KD-QAh6mtG_4GYbn2hKvHAyEhzVY4plWUHNa5zESk_w5LuZ9B1xGGtuLX4LPS8M1foPfddr0yIZf6q80KzZfNy02vl4jcbsrIM9wxqIrrOKfQcX8cRViF1jUdI-IvEbYOVJstBtft-qc-vkWrzJYzVnuUGiFIPHe_HCpVYWPgm3koenK7jq3h32pjm1i8RZPb52TwkTDffLLqb324UVYCvkiaQahvT4jPBJyHjlH-2z-C3cawuM9K9mLX0FjLUcaC-YFSvJIQmp-vmQ9knjXNfnAkGRVfb1k0WQGGWO8b7BwclI_hAnA2ieirxOAeSLy_l8RXdQLtI5SH9Q4TIVLKXkGeTvHEgPb-CgZYZtBI5CA0V3G-XclDduvJ-j6YplT8QCgv3arBJLS-vmzkgQItfWb6SRzspMDD_9iFhm747Rri7_8Y2bNJqGkvMttUejBXj2ErPl5YIY7EzeihJAt7BDFmvu5lPUBUCUlJy3_9CRF7gItS_hWC49UYk7SftB4-AgesGw1-MKZlzzKhv4EhH0tt0DE_L_fx8_HRUz48aTYpOhOvduMOMKVdPK7XJ5DmqS27Xz7zABBqC-waeTNqdU1gBaIQmZTe8YUD150Hv5RD-GhILbKNhKG7lBzT5xyQvL9d1i9wlnrryGsV_pu-ZsrI50nFdc7A6ZnYDze8CXA7SLwrmzl0wFEest81luqrUYOXy_-yU8nvcgUEEvT5p9NXB3nEG5M4RrrhflSIl2vQE8UeH1VmHBg35Y9Vd_G_qnYr0IegOQb3XaEs87yC2m2Hb6edl8NHe0bq0ZKQc2RO0y5pbJZeHCBqtV9gV2WAHNISZDxu40U8osb0LXTC3EpsfwKu4vekFu0aoXUPN5z8E7JfcRO6RivVWBPaRxlT3ZC4x-DjqLpAX1arNEYV14myU_8oYvxnPlDl_oUnxBA9bmuSc9o8ie3TUU73cu2FygxA0YuYRhUPMUBgJi88-6898MbosH2e9a_YN-ZIjq_fiy1Sulda6M801vB77iTMYlKMztklFMnIKHFubcrwA3IRk04C8wWPzaxfYV7cXlhwlebnK7316j1W2ltnI227m5GWp05JweY5QuEcIn0Fi5l-C6NAiG2FyRi0keYyoalQg5bIgOJV-NQZ9Hxn-hRGvmMLK1trSO1pDSeWs0eWKQWFgdrRI48N17ImlPhWGzTijToY16-oiMBfPwF5oTdvkQxC9G0E3sRkToCpMvcqKtdRvZt4q12cg_mzENf5xmaNVreDunQjmT4BSRvM35wcAyJn2FntV3tIwG-3Y2TwfQQ1XXwbLBN6uZesC28CAJ1C_jDOGwmf027-b9DqwoLVTd1aAnZzEGysecSO3ZWHc4FgqF7QV6DSkqYaMqhkIZHxbfTZl8cEdaTj85DYx0rfVZcSuGcwOKeArCFeyPYItJOJpz4Vb8ZeU3eT3Rw7triICMBTpoTQbE_Qeag9LGg60YRWgCVg2EQP9nA-wISxgGIB9NU68EHiQtOi7klwLZ13sC1_stHLh7Xeg8uDqZ6bquxBoakcddv6ZX5OQC0U5K8n6uijQxS1XZX9CUcukm2jVoPDaCACNgA0bbKhrROIbc28_uHhiwiqrxDUylwRS1cE8UjGx4AvFyyXff7Th4bw90oHpzPS8TTVcLUffXk95lzNjIwd6UOKZWr2_wVL9syv6m-66trzRSJHItKjgegIseB6TD0C9vH7NgbFjGLMhIONto2qaCyjNWB5S9BdRbcPVX5ACYgav03YfXMLSosia_3wRe7o2MtXXYw4nTMYgoVyq_TjW63yBz55jGyplLEoOX8kKciD8iafDmKpWXJU2rXYTeSVNUdnfFqkEGcs5oBitRy_tejqb4vhlC92JO9W7L1x0hCm1uxXvHK9XqZIyf08yKdWFkP1STVAcbbrOJ7FoTfMHtw2rjqiGMSaFxgzqW59Ckdt3tdpUWKEWovwUTgNzvELwZ8Ee2STxkjVIjoUoJuHWaq3NRmx9Egm8HkiDzUgHwJ-AChmh-jQ02shkZYHSHojDoruRNoUX7xxE4f1GSHGVG3cWPJO0UWdTyq4oHzZpmxMRI6aNhH0gWZw89ADY4c_-1IYSwyA8D8vq-OtCV5-RbTbRhebEcHBBu3ZZFfuB3E4_1FLyl5oCNAJFqTlstIG0Q_notzlgmxBbxiF4VF8LJpwTZHCNnjBcDyQAV303CvDB_JhqNDFgy_wpB76pH71BeOv",
+      "domain": "sso-test.cubicservice.ru",
+      "path": "/",
+      "expires": 1724161789.559461,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": ".AspNetCore.Identity.ApplicationC2",
+      "value": "B41B3zbyHf7eeYBxqb8Xy6IOOuzpioEztjFov8KfX-hYmcPe5u0LG3c5YHEgRALOXPoiDK9cKpWVdGtsbAO8SBipUZoOw4KEZ_2pMjbsV5UyzIxX0JTE_hNC3hcDgY5nwrSIaHqlijVMU8Y5lHAbMjWpg3_2hl4aM9SDovfYKz1L6Kn01XSkn-6iGwfiaL2Ug04kyTktZP44pcmx5ASmetHhqyn2OODAQSASsCFLYfLQXjR-Cnsd1vzzFFlzhb2Wh_RcFtdN2Fh_SC-NAalyxv0syVtJgiRZKcSH3c5qTxGFmAH7mUoqDqHGAV_UTwn6648UvSIBAu6saw-53_AmFESZaAC-TsTknONJPsJ9F5jyYRJNG5L3v4bZMgL07CUBmWaQLXY407Q_d56rEUHOghjXHXOTylOY-m3ifghR85KReyv0s98ZFpZfo6jspCREssUNbFy9qog5_SqTo_TTFk5tCfB3y4HnaGqbKqi5eTjRxFjOa2S2kXfp-6mrwnUV74U912fZPpXnbLlu3VpTEKku9FXDSnDqGOAszhk38pKuLpHSBmCl-RIvRflYoBh5yX0pvnW1y7bLwBL-QH505Lgev2eHB9nstJqeiWSGXn6CsuEtEwyEepzjs0EZO_T02IpgRIH5TD2AACxIZvxsTjiFTcW920rBah-fPxErw7HlWhKX2gVkO4-j4OYe0wqRXdfEOG6HMkxklFqESu",
+      "domain": "sso-test.cubicservice.ru",
+      "path": "/",
+      "expires": 1724161789.559561,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://cms-test.cubicservice.ru",
+      "localStorage": [
+        {
+          "name": "oidc.38dafa90c3d74e10b557d75a735483e9",
+          "value": "{\"id\":\"38dafa90c3d74e10b557d75a735483e9\",\"created\":1724075384,\"request_type\":\"si:r\",\"nonce\":\"4b40139c31e14805b42728d83ad3eb23\",\"redirect_uri\":\"https://cms-test.cubicservice.ru/oidc-callback.html\",\"authority\":\"https://sso-test.cubicservice.ru\",\"client_id\":\"DefaultClient\",\"response_mode\":null,\"scope\":\"openid profile rmp_cms\",\"extraTokenParams\":{}}"
+        }
+      ]
+    }
+  ]
+}

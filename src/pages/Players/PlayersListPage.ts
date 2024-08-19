@@ -1,8 +1,7 @@
-import { APIRequestContext, Locator, Page } from '@playwright/test'
-import { PlayerData } from '../../tests/players.spec'
+import { Locator, Page } from '@playwright/test'
+import { PlayerData } from '@tests/players.spec'
 import ModalCreateNewPlayer from '@components/Modals/ModalCreateNewPlayer'
 import Input from '@page-factory/simple-elements/input'
-import PlayersRequests from '@requests/players-requests'
 import ActionIcon from '@page-factory/extended-elements/action-icon'
 import PlayerTableItem from '@components/Table/PlayerTableItem'
 import BasePage from '../Base/BasePage'
@@ -17,9 +16,8 @@ export default class PlayersListPage extends BasePage {
   public readonly modalCreateNewPlayer: ModalCreateNewPlayer
   private readonly playerTableItem: PlayerTableItem
   public readonly modalConfirm: ModalConfirm
-  private readonly playersRequests: PlayersRequests
 
-  public constructor(page: Page, request: APIRequestContext) {
+  public constructor(page: Page) {
     super(page)
     this.searchInput = new Input({
       page,
@@ -40,20 +38,28 @@ export default class PlayersListPage extends BasePage {
     this.modalCreateNewPlayer = new ModalCreateNewPlayer(page)
     this.playerTableItem = new PlayerTableItem(page)
     this.modalConfirm = new ModalConfirm(page)
-    this.playersRequests = new PlayersRequests(page, request)
+  }
+
+  private async waitLoadingPageElements(func: () => Promise<void>) {
+    const [response] = await Promise.all([
+      this.page.waitForResponse('https://players2-test.cubicservice.ru/v1/folders/paged'),
+      func()
+    ])
+    await this.itemsCounter.waitLoadingPageElements((await response.json()).itemCount)
   }
 
   public async gotoPageAndFolder(searchQuery: string) {
-    await this.appSidebar.gotoPlayersPageIsDropdown()
-    await this.itemsCounter.waitLoadingPageElements(await this.playersRequests.paged())
-    await this.searchInput.fill('root-folder__autotests')
-    await this.itemsCounter.waitLoadingPageElements(
-      await this.playersRequests.paged('root-folder__autotests')
+    await this.waitLoadingPageElements(() =>
+      this.appSidebar.gotoPageIsDropdown(
+        this.appSidebar.expandPlayersIcon,
+        this.appSidebar.playersList,
+        this.appSidebar.playersLink
+      )
     )
+    await this.waitLoadingPageElements(() => this.searchInput.fill('root-folder__autotests'))
     await this.playerTableItem.gotoEntity('paged')
     await this.checkUrl('Folder')
-    await this.searchInput.fill(searchQuery)
-    await this.itemsCounter.waitLoadingPageElements(await this.playersRequests.paged(searchQuery))
+    await this.waitLoadingPageElements(() => this.searchInput.fill(searchQuery))
     await this.playerTableItem.gotoEntity('paged')
     await this.checkUrl('Folder')
   }

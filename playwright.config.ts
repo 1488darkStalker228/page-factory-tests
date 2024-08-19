@@ -2,11 +2,13 @@ import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   testDir: './src/tests',
-  timeout: 10 * 3000,
+  timeout: 60 * 3000,
   //timeout: 60 * 3000,
   expect: {
     timeout: 10000
   },
+  globalSetup: require.resolve('./global-setup'),
+  globalTeardown: require.resolve('./global-teardown'),
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -17,6 +19,8 @@ export default defineConfig({
     trace: 'on-first-retry',
     // video: 'on',
     // screenshot: 'on'
+    //storageState: 'state.json',
+
   },
   projects: [
     {

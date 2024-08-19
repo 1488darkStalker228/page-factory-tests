@@ -12,8 +12,8 @@
       "@fixtures/*": ["src/fixtures/*"],
       "@page-factory/*": ["src/page-factory/*"],
       "@pages/*": ["src/pages/*"],
-      "@requests/*": ["src/requests/*"],
       "@utils/*": ["src/utils/*"],
+      "@tests/*": ["src/tests/*"],
       "@/*": ["*"]
     }
   },

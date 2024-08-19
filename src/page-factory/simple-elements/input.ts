@@ -1,6 +1,6 @@
 import test, { expect, Locator } from '@playwright/test'
 import BaseElement from './base-element'
-import { getRandomString } from '../../utils/get-randon'
+import { getRandomString } from '@utils/get-randon'
 
 export default class Input extends BaseElement {
   public get typeOf(): string {

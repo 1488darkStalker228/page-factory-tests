@@ -5,24 +5,43 @@ name: tests
 on:
   #Для запуска пайпа из стороннего репозитория;
   workflow_dispatch:
+    inputs:
+      ALLURE_JOB_RUN_ID:
+        description: ALLURE_JOB_RUN_ID service parameter. Leave blank.
+      ALLURE_USERNAME:
+        description: ALLURE_USERNAME service parameter. Leave blank.
+
+env:
+  ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+  ALLURE_ENDPOINT: https://test.testops.cloud/
+  ALLURE_PROJECT_ID: 1
+  ALLURE_RESULTS: 'allure-results'
+
 
 jobs:
   tests:
     #Название джоба на карте
     name: "tests"
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-
-#      - name: "Checkout repository"
-#        uses: actions/checkout@v4
-#      - name: "Setup node.js"
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 20
-#      - name: "Install dependencies"
-#        run: npm ci
-#      - name: "Install Playwright"
-#        run: npx playwright install --with-deps
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+      - name: "Setup node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: "Set up JDK"
+        uses: actions/setup-java@v3
+        with:
+          distribution: oracle
+          java-version: 17
+      - name: "Install allurectl"
+        uses: allure-framework/setup-allurectl@v1
+      - name: "Install dependencies"
+        run: npm ci
+      - name: "Install Playwright"
+        run: npx playwright install --with-deps
       - name: "Run tests"
         run: npx playwright test players.spec.ts
       - name: "Show report"

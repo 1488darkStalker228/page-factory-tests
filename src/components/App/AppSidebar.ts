@@ -4,17 +4,14 @@ import Block from '@page-factory/simple-elements/block'
 import Link from '@page-factory/simple-elements/link'
 
 export default class AppSidebar {
-  public readonly tracksLinkItem: Link
   public readonly expandPlayersIcon: Icon
   public readonly playersList: Block
   public readonly playersLink: Link
+  public readonly expandPlaylistsIcon: Icon
+  public readonly playlistsList: Block
+  public readonly downloadPlaylistsLink: Link
 
   public constructor(readonly page: Page) {
-    this.tracksLinkItem = new Block({
-      page,
-      selector: '[class="app-sidebar__item"] >> nth=1',
-      name: 'tracks item'
-    })
     this.expandPlayersIcon = new Icon({
       page,
       selector: '[class="app-sidebar__item-chevron"] >> nth=3 >> svg',
@@ -31,24 +28,39 @@ export default class AppSidebar {
       name: 'players list page link',
       searchIn: this.playersList.getLocator()
     })
+    this.expandPlaylistsIcon = new Icon({
+      page,
+      selector: '[class="app-sidebar__item-chevron"] >> nth=5 >> svg',
+      name: 'expand playlists section icon'
+    })
+    this.playlistsList = new Block({
+      page,
+      selector: '[class="app-sidebar__item-children"] >> nth=3',
+      name: 'playlists section list'
+    })
+    this.downloadPlaylistsLink = new Link({
+      page,
+      selector: '[href="/playlists/download"]',
+      name: 'download playlists list page link'
+    })
   }
 
-  public async gotoPlayersPageIsDropdown() {
-    await this.expandPlayersIcon.click()
-    await this.expandPlayersIcon.checkAttribute({
+  public async gotoPageIsDropdown(icon: Icon, list: Block, link: Link) {
+    await icon.click()
+    await icon.checkAttribute({
       name: 'data-active',
       value: 'true'
     })
-    await this.playersList.checkVisible()
-    await this.playersLink.click()
-    await this.playersLink.checkAttribute({
+    await list.checkVisible()
+    await link.click()
+    await link.checkAttribute({
       name: 'data-active',
       value: 'true'
     })
   }
 
-  public async gotoPage() {
-    await this.tracksLinkItem.click()
-    await this.tracksLinkItem.checkAttribute({ name: 'data-active', value: 'true' })
-  }
+  // public async gotoPage() {
+  //   await this.tracksLinkItem.click()
+  //   await this.tracksLinkItem.checkAttribute({ name: 'data-active', value: 'true' })
+  // }
 }

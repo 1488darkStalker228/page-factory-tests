@@ -3,7 +3,9 @@ import { test } from '@fixtures/players'
 export type PlayerData = { [key: string]: string }
 
 test.describe('Tests of Players section', () => {
-  test('Create player', async ({ playersListPage, playerEditorPage }) => {
+  test('Create player', async ({ playersListPage, playerEditorPage }, testInfo) => {
+    console.log(testInfo.project.use.baseURL, 'в начале')
+
     const playerData: PlayerData = {
       name: 'test-player__autotests',
       address: 'Ростов-на-Дону',
